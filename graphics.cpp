@@ -1,5 +1,6 @@
 #include "graphics.h"
 #include "Button.h"
+#include <fstream>
 #include <iostream>
 #include <time.h>
 #include <vector>
@@ -20,6 +21,47 @@ screen screenStatus = open;
 
 void spawnConfetti() {
     confetti.push_back(Quad({rand() % 10 / 10.0, rand() % 10 / 10.0, rand() % 10 / 10.0}, {rand() % (int)width, rand() % (int)height}, 10, 10));
+}
+
+void drawDonkey(int x, int y, int sideLength){
+    const int SIDE_LENGTH = sideLength;
+    ifstream inFile("../scene.txt");
+    inFile >> noskipws;
+    int xCoord = x;
+    int yCoord = y;
+    char letter;
+    bool draw;
+    while (inFile >> letter) {
+        draw = true;
+        switch(letter) {
+            case 'r': glColor3f(1, 0, 0); break;//red
+            case 'n' :glColor3f(.43, 1/2, 1/2); break;//brown
+            case 'g': glColor3f(0, 1, 0); break;//green
+            case 'b': glColor3f(0, 0, 0); break;//black
+            case 'y': glColor3f(1, 1, 0); break;//yellow
+            case 'm': glColor3f(1, 0, 1); break;//magenta
+            case 'c': glColor3f(0, 1, 1); break;//cyan
+            case 't': glColor3f(.5, .5, .5); break;//grey
+            case 'l': glColor3f(.3, .3, .3); break;//darker gray
+            case ' ': glColor3f(0.43f, 0.32f, 0.19f); break;//white
+
+
+            default: // newline
+                draw = false;
+                xCoord = 0;
+                yCoord += SIDE_LENGTH;
+        }
+        if (draw) {
+            glBegin(GL_QUADS);
+            glVertex2i(xCoord, yCoord);
+            glVertex2i(xCoord+SIDE_LENGTH, yCoord);
+            glVertex2i(xCoord+SIDE_LENGTH, yCoord+SIDE_LENGTH);
+            glVertex2i(xCoord, yCoord+SIDE_LENGTH);
+            glEnd();
+            xCoord += SIDE_LENGTH;
+        }
+    }
+    inFile.close();
 }
 
 void init() {
@@ -113,7 +155,7 @@ void display() {
                 glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, letter);
             }
         }
-
+        drawDonkey(100,100,5);
     }
 
     if (screenStatus == mediumScreen){

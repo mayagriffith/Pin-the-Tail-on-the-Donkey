@@ -1,0 +1,40 @@
+
+       bb
+      btb
+bbb   b b
+bttb bt tbb bb
+ b tbbtttbnbnb
+ b ttbtttbbnnbbbb
+  b ttbttbttbnnnb
+   bbtbtbtttbnnnbbbb
+    bttttttttbnnnnnb
+    btttttttttbnnnnb
+    bttttttttttbnnnb
+   btttbbtttttttbbnnbb
+   btttttttlltttttbbnnbb         bb
+   btttttttlllttttbbbcbbbbbbbbbbbcbbbbb
+   bttttttllblttttttbcbyyyyyyyyybcbltttbb
+   bbttttlllblltttttbcbyyyyyyyyybcbltttttb
+  bnnbtttlllblltttttbcbbyyyyyyybbcbltttttb
+  bbbbbblllbllllttttlbccbbbbbbbccblttttttb
+  b  byblllbllllttttlbbbcccccccblttttttttb
+ b  tbbbblb blllltttttttbbbbbbbblttttttttb
+ b  ttbnbb  bllllttttttttlbybllttttttttttb
+ btttttbb    bllbttttttttbbbbblltttttttttb
+  btttbbyb   bllbtttttbttbcccblltttbttttttb
+   bbb byb    bllbtttlbttbbbbbtttttbttttttb
+   byb byb    bllbtttlbttttttttttttbltttttb
+   byb byb     blbttlbttttttttttttblbltttttb
+   byb byb      bbttlbtttttttttbbbbllblltttb
+   byb byb       bttb bbbbbbbbb   blllblllllb
+   byb byb      bbtlb              blllbllttb
+   byb byb     btbtlb              bllllbbttb
+   byb byb     blbttb             btlb   bltb
+   byb byb    bltbttb             btlb    btb
+   byb byb    blb btb            btlb     btb
+   byybbyb    btb bttb          btlb      btb
+    bybyyb    btb  bttb        btlb       btb
+    byyyyb    btb   btbb      btlb        btb
+     bbbbb   bbbb   bbbb      bbbb       bbbb
+             bbbb   bbbb      bbbb       bbbb
+             bbbb    bbb      bbb        bbbb
