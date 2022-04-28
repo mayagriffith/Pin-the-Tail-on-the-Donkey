@@ -69,27 +69,75 @@ void display() {
         glFlush();
     }
     if (screenStatus == tutorialScreen){
-        spawn.draw();
+        string label = "~ Your goal is to place the tail on the donkey that is randomly hidden on the screen some where";
+        glRasterPos2i(75,105);
+        glColor3f(1, 1, 1);
+        for (const char &letter : label) {
+            glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, letter);
+        }
+        label = "                     ~ The harder the difficulty, the less tries you have to find the donkey ";
+        glRasterPos2i(75,120);
+        for (const char &letter : label) {
+            glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, letter);
+        }
+        label = "                   ~ This tutorial shows you can place the tail on the donkey to win the game ";
+        glRasterPos2i(75,135);
+        for (const char &letter : label) {
+            glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, letter);
+        }
+        label= "             ~ Press 'r' to reset the placement of the tail, and 'b' to return to the home screen ";
+        glRasterPos2i(75,150);
+        for (const char &letter : label) {
+            glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, letter);
+        }
+        glFlush();
 
     }
 
     if (screenStatus == easyScreen){
-        spawn.draw();
+        numTries = 0;
+        maxTries = 8;
+        string label = "The donkey is hidden somewhere random on the screen, you have 8 tries to find it!";
+        glRasterPos2i(100,50);
+        glColor3f(1, 1, 1);
+        for (const char &letter : label) {
+            glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, letter);
+        }
 
     }
 
     if (screenStatus == mediumScreen){
-        spawn.draw();
+        numTries = 0;
+        maxTries = 5;
+        string label = "The donkey is hidden somewhere random on the screen, you have 5 tries to find it!";
+        glRasterPos2i(100,50);
+        glColor3f(1, 1, 1);
+        for (const char &letter : label) {
+            glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, letter);
+        }
 
     }
 
     if (screenStatus == hardScreen){
-        spawn.draw();
+        numTries = 0;
+        maxTries = 3;
+        string label = "The donkey is hidden somewhere random on the screen, you have 3 tries to find it!";
+        glRasterPos2i(100,50);
+        glColor3f(1, 1, 1);
+        for (const char &letter : label) {
+            glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, letter);
+        }
 
     }
 
     if (screenStatus == close){
-        string label = "Good job you spawned 100 confetti!";
+        string label;
+        if (maxTries == numTries){
+            label = "Oh no! You ran out of tries, here's the donkey!";
+        }
+        else{
+            label = "Good job you pinned the tail on the donkey!";
+        }
         glRasterPos2i(150,100);
         for (const char &letter : label) {
             glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, letter);
@@ -107,8 +155,8 @@ void kbd(unsigned char key, int x, int y) {
         glutDestroyWindow(wd);
         exit(0);
     }
-    if (key == 's'){
-        screenStatus = tutorialScreen;
+    if (key == 'b'){
+        screenStatus = open;
     }
 
     glutPostRedisplay();
@@ -117,16 +165,12 @@ void kbd(unsigned char key, int x, int y) {
 void kbdS(int key, int x, int y) {
     switch(key) {
         case GLUT_KEY_DOWN:
-            spawn.move(0,2);
             break;
         case GLUT_KEY_LEFT:
-            spawn.move(-2,0);
             break;
         case GLUT_KEY_RIGHT:
-            spawn.move(2,0);
             break;
         case GLUT_KEY_UP:
-            spawn.move(0,-2);
             break;
     }
 
@@ -160,6 +204,8 @@ void mouse(int button, int state, int x, int y) {
         spawnConfetti();
     }
 
+
+    //If it is the opening screen go to the corresponding screen of the user button click
     if(screenStatus == open){
         if(button==GLUT_LEFT_BUTTON && state == GLUT_UP && tutorial.isOverlapping(x,y)){
             screenStatus = tutorialScreen;
