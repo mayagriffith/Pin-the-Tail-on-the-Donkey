@@ -7,9 +7,15 @@ using namespace std;
 
 GLdouble width, height;
 int wd;
+int numTries;
+int maxTries;
 Button spawn({1, 0, 0}, {100, 100}, 100, 50, "Spawn");
+Button tutorial({.43,.32,.19},{160,400}, 250,150,"Tutorial");
+Button easy({.43,.32,.19},{415,400}, 250,150,"Easy");
+Button medium({.43,.32,.19},{160,555}, 250,150,"Medium");
+Button hard({.43,.32,.19},{415,555}, 250,150,"Hard");
 vector<Quad> confetti;
-enum screen {open, confet, close};
+enum screen {open, tutorialScreen,easyScreen, mediumScreen, hardScreen, close};
 screen screenStatus = open;
 
 void spawnConfetti() {
@@ -17,15 +23,15 @@ void spawnConfetti() {
 }
 
 void init() {
-    width = 500;
-    height = 500;
+    width = 600;
+    height = 800;
     srand(time(0));
 }
 
 /* Initialize OpenGL Graphics */
 void initGL() {
     // Set "clearing" or background color
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f); // Black and opaque
+    glClearColor(0.0f, 0.8f, 0.0f, 1.0f); // Green and opaque
 }
 
 /* Handler for window-repaint event. Call back when the window first appears and
@@ -49,23 +55,39 @@ void display() {
      */
 
     if (screenStatus == open){
-        string label = "Welcome to the Confettify Button! Press s to start";
-        glRasterPos2i(130,100);
+        tutorial.draw();
+        easy.draw();
+        medium.draw();
+        hard.draw();
+        string label = "Welcome to pin the tail on the Donkey!";
+        glRasterPos2i(175,175);
+        glColor3f(1, 1, 1);
         for (const char &letter : label) {
             glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, letter);
         }
+
         glFlush();
     }
-    if (screenStatus == confet){
+    if (screenStatus == tutorialScreen){
         spawn.draw();
 
-        for (const Quad &piece : confetti) {
-            piece.draw();
-        }
-        if(confetti.size()>99){
-            screenStatus = close;
-        }
     }
+
+    if (screenStatus == easyScreen){
+        spawn.draw();
+
+    }
+
+    if (screenStatus == mediumScreen){
+        spawn.draw();
+
+    }
+
+    if (screenStatus == hardScreen){
+        spawn.draw();
+
+    }
+
     if (screenStatus == close){
         string label = "Good job you spawned 100 confetti!";
         glRasterPos2i(150,100);
@@ -75,9 +97,6 @@ void display() {
         }
         glFlush();
     }
-
-
-
     glFlush();  // Render now
 }
 
@@ -89,7 +108,7 @@ void kbd(unsigned char key, int x, int y) {
         exit(0);
     }
     if (key == 's'){
-        screenStatus = confet;
+        screenStatus = tutorialScreen;
     }
 
     glutPostRedisplay();
@@ -141,6 +160,21 @@ void mouse(int button, int state, int x, int y) {
         spawnConfetti();
     }
 
+    if(screenStatus == open){
+        if(button==GLUT_LEFT_BUTTON && state == GLUT_UP && tutorial.isOverlapping(x,y)){
+            screenStatus = tutorialScreen;
+        }
+        if(button==GLUT_LEFT_BUTTON && state == GLUT_UP && easy.isOverlapping(x,y)){
+            screenStatus = easyScreen;
+        }
+        if(button==GLUT_LEFT_BUTTON && state == GLUT_UP && medium.isOverlapping(x,y)){
+            screenStatus = mediumScreen;
+        }
+        if(button==GLUT_LEFT_BUTTON && state == GLUT_UP && hard.isOverlapping(x,y)){
+            screenStatus = hardScreen;
+        }
+    }
+
     glutPostRedisplay();
 }
 
@@ -162,7 +196,7 @@ int main(int argc, char** argv) {
     glutInitWindowSize((int)width, (int)height);
     glutInitWindowPosition(100, 200); // Position the window's initial top-left corner
     /* create the window and store the handle to it */
-    wd = glutCreateWindow("Confettify!" /* title */ );
+    wd = glutCreateWindow("Pin The Tail On The Donkey!" /* title */ );
 
     // Register callback handler for window re-paint event
     glutDisplayFunc(display);
