@@ -10,10 +10,10 @@ int wd;
 int numTries;
 int maxTries;
 Button spawn({1, 0, 0}, {100, 100}, 100, 50, "Spawn");
-Button tutorial({.43,.32,.19},{160,400}, 250,150,"Tutorial");
-Button easy({.43,.32,.19},{415,400}, 250,150,"Easy");
-Button medium({.43,.32,.19},{160,555}, 250,150,"Medium");
-Button hard({.43,.32,.19},{415,555}, 250,150,"Hard");
+Button tutorial({.45,.97,.46},{160,400}, 250,150,"Tutorial");
+Button easy({.23,.54,.24},{415,400}, 250,150,"Easy");
+Button medium({.141,.35,.149},{160,555}, 250,150,"Medium");
+Button hard({.023,.19,.029},{415,555}, 250,150,"Hard");
 vector<Quad> confetti;
 enum screen {open, tutorialScreen,easyScreen, mediumScreen, hardScreen, close};
 screen screenStatus = open;
@@ -31,7 +31,7 @@ void init() {
 /* Initialize OpenGL Graphics */
 void initGL() {
     // Set "clearing" or background color
-    glClearColor(0.0f, 0.8f, 0.0f, 1.0f); // Green and opaque
+    glClearColor(0.43f, 0.32f, 0.19f, 1.0f); // Green and opaque
 }
 
 /* Handler for window-repaint event. Call back when the window first appears and
