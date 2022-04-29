@@ -1,0 +1,11 @@
+
+bb
+ btb
+  btb
+   btb
+    btb
+     btb
+       bttb
+        bttb
+          btb
+            b
