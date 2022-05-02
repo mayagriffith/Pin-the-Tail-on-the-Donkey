@@ -1,0 +1,14 @@
+//
+// Created by Maya Griffith on 5/2/22.
+//
+
+#ifndef FINAL_PROJECT_CPLEFKA_MGRIFF13_DONKEY_H
+#define FINAL_PROJECT_CPLEFKA_MGRIFF13_DONKEY_H
+
+
+class Donkey {
+
+};
+
+
+#endif //FINAL_PROJECT_CPLEFKA_MGRIFF13_DONKEY_H
