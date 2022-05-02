@@ -43,12 +43,12 @@ void drawDonkey(int x, int y, int sideLength){
             case 'c': glColor3f(0, 1, 1); break;//cyan
             case 't': glColor3f(.5, .5, .5); break;//grey
             case 'l': glColor3f(.3, .3, .3); break;//darker gray
-            case ' ': glColor3f(0.43f, 0.32f, 0.19f); break;//white
+            case ' ': glColor3f(0.43f, 0.32f, 0.19f); break;//dark brown background color
 
 
             default: // newline
                 draw = false;
-                xCoord = 0;
+                xCoord = x;
                 yCoord += SIDE_LENGTH;
         }
         if (draw) {
@@ -186,10 +186,15 @@ void display() {
         for (const char &letter : label) {
             glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, letter);
         }
+        drawDonkey(115,250,8);
+
         glFlush();
 
     }
 
+
+    int xCoord = rand() % (int)width;
+    int yCoord = rand() % (int)height + 50;
     if (screenStatus == easyScreen){
         numTries = 0;
         maxTries = 8;
@@ -209,7 +214,7 @@ void display() {
                 glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, letter);
             }
         }
-        drawDonkey(100,100,5);
+        drawDonkey(xCoord, yCoord,2);
     }
 
     if (screenStatus == mediumScreen){
