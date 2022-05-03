@@ -22,7 +22,7 @@ vector<Quad> confetti;
 enum screen {open, tutorialScreen,easyScreen, mediumScreen, hardScreen, close};
 screen screenStatus = open;
 Donkey geraldTut(6, 180, 250);
-Donkey gerald(2, 100, 100);
+Donkey gerald(3, 100, 100);
 Tail geraldTail(6,425,333);
 
 
@@ -256,15 +256,15 @@ void mouse(int button, int state, int x, int y) {
         }
         if(button==GLUT_LEFT_BUTTON && state == GLUT_UP && easy.isOverlapping(x,y)){
             screenStatus = easyScreen;
-            gerald.move(rand()%int(width),rand()%int(height));
+            gerald.move(rand()%int(width-100),rand()%int(height-100)+50);
         }
         if(button==GLUT_LEFT_BUTTON && state == GLUT_UP && medium.isOverlapping(x,y)){
             screenStatus = mediumScreen;
-            gerald.move(rand()%int(width),rand()%int(height));
+            gerald.move(rand()%int(width-100),rand()%int(height-100)+50);
         }
         if(button==GLUT_LEFT_BUTTON && state == GLUT_UP && hard.isOverlapping(x,y)){
             screenStatus = hardScreen;
-            gerald.move(rand()%int(width),rand()%int(height));
+            gerald.move(rand()%int(width-100),rand()%int(height-100)+50);
         }
     }
 
