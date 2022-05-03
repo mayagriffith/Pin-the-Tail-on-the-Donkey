@@ -121,11 +121,36 @@ public:
    */
     unsigned int getHeight() const;
 
+    /*
+   * Requires: 3 doubles, red green and blue
+   * Modifies: the color of the quad
+   * Effects: changes color
+   */
     void setColor(double red, double green, double blue);
+    /*
+   * Requires: 1 color
+   * Modifies: the color of the quad
+   * Effects: changes color
+   */
     void setColor(color fill);
+    /*
+   * Requires: int x and y
+   * Modifies: the position of the quad
+   * Effects: moves the quad
+   */
     void move(int deltaX, int deltaY);
+    /*
+   * Requires: int width, int height
+   * Modifies: the size of quad
+   * Effects: changes size
+   */
     void resize(unsigned int width, unsigned int height);
 
+    /*
+   * Requires: nothing
+   * Modifies: nothing
+   * Effects: draws the quad
+   */
     virtual void draw() const;
 };
 
