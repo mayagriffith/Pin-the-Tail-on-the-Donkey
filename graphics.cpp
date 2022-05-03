@@ -60,6 +60,8 @@ void display() {
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     glOrtho(0.0, width, height, 0.0, -1.f, 1.f);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glEnable( GL_BLEND );
 
     glClear(GL_COLOR_BUFFER_BIT);   // Clear the color buffer with current clearing color
 

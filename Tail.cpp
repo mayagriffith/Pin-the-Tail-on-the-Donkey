@@ -48,7 +48,7 @@ void Tail::draw() const {
             case 'c': glColor3f(0, 1, 1); break;//cyan
             case 't': glColor3f(.5, .5, .5); break;//grey
             case 'l': glColor3f(.3, .3, .3); break;//darker gray
-            case ' ': glColor3f(0.43, 0.32, 0.19); break;//dark brown
+            case ' ': glColor4f(0.43, 0.32, 0.19,0.01); break;//dark brown
 
 
             default: // newline
@@ -67,8 +67,5 @@ void Tail::draw() const {
         }
     }
     inFile.close();
-}//
-// Created by Maya Griffith on 5/3/22.
-//
-
+}
 #include "Tail.h"
