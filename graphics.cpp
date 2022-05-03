@@ -120,6 +120,7 @@ void initGL() {
 
 void initUser() {
     //user is the tail
+    //create tail
     //switch screens for each level?
     //user.setSize(20.0,20.0);
     //
