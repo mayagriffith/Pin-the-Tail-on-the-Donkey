@@ -193,8 +193,7 @@ void display() {
     }
 
 
-    int xCoord = rand() % (int)width;
-    int yCoord = rand() % (int)height + 50;
+
     if (screenStatus == easyScreen){
         numTries = 0;
         maxTries = 8;
