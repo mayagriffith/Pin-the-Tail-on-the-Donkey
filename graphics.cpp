@@ -22,7 +22,7 @@ vector<Quad> confetti;
 enum screen {open, tutorialScreen,easyScreen, mediumScreen, hardScreen, close};
 screen screenStatus = open;
 Donkey geraldTut(6, 180, 250);
-Donkey gerald(2, 100, 100);
+Donkey gerald(3, 100, 100);
 Tail geraldTail(6,425,333);
 
 
