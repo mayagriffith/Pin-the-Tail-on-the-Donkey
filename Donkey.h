@@ -8,11 +8,32 @@ protected:
     unsigned int x;
     unsigned int y;
 public:
-    //constructors
+    /*
+     * Default Constructor
+     * Requires: nothing
+     * Modifies: int sideLength, int x, int y
+     * Effects: sets sideLength to 8, x to 100 y to 100
+     */
     Donkey();
+    /*
+     * Requires: int sideLength, int x, int y
+     * Modifies: nothing
+     * Effects: sets sideLength to parameter, x and y to parameter
+     */
     Donkey(int sideLength, int x, int y);
 
+    /*
+     * Requires: nothing
+     * Modifies: X and Y
+     * Effects: moves the Donkey
+     */
     void move(int deltaX, int deltaY);
+
+    /*
+     * Requires: nothing
+     * Modifies: X and Y
+     * Effects: moves the Donkey
+     */
     void resize(unsigned int width, unsigned int height);
 
     virtual void draw() const;
