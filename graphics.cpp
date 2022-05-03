@@ -9,8 +9,7 @@
 #include <string>
 using namespace std;
 
-GLdouble width = 600;
-GLdouble height = 800;
+GLdouble width, height;
 int wd;
 int numTries;
 int maxTries;
@@ -23,7 +22,7 @@ vector<Quad> confetti;
 enum screen {open, tutorialScreen,easyScreen, mediumScreen, hardScreen, close};
 screen screenStatus = open;
 Donkey geraldTut(6, 180, 250);
-Donkey gerald(2, rand() % (int)width, rand() % (int)height);
+Donkey gerald(2, 100, 100);
 Tail geraldTail(6,425,333);
 
 
@@ -257,12 +256,15 @@ void mouse(int button, int state, int x, int y) {
         }
         if(button==GLUT_LEFT_BUTTON && state == GLUT_UP && easy.isOverlapping(x,y)){
             screenStatus = easyScreen;
+            gerald.move(rand()%int(width),rand()%int(height));
         }
         if(button==GLUT_LEFT_BUTTON && state == GLUT_UP && medium.isOverlapping(x,y)){
             screenStatus = mediumScreen;
+            gerald.move(rand()%int(width),rand()%int(height));
         }
         if(button==GLUT_LEFT_BUTTON && state == GLUT_UP && hard.isOverlapping(x,y)){
             screenStatus = hardScreen;
+            gerald.move(rand()%int(width),rand()%int(height));
         }
     }
 
