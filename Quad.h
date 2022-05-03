@@ -73,14 +73,52 @@ public:
    * Effects: returns int as BottomY coordinate of Quad
    */
     int getBottomY() const;
+    /*
+   * Requires: nothing
+   * Modifies: nothing
+   * Effects: returns a point (x and y) as center coordinate of Quad
+   */
     point getCenter() const;
 
+    /*
+   * Requires: nothing
+   * Modifies: nothing
+   * Effects: returns double as how much red
+   */
     double getRed() const;
+    /*
+   * Requires: nothing
+   * Modifies: nothing
+   * Effects: returns double of how much green
+   */
     double getGreen() const;
+    /*
+   * Requires: nothing
+   * Modifies: nothing
+   * Effects: returns double of how much blue
+   */
     double getBlue() const;
+    /*
+   * Requires: nothing
+   * Modifies: nothing
+   * Effects: returns the color of the Quad
+   */
     color getFill() const;
 
+
+
+    /*
+   * Requires: nothing
+   * Modifies: nothing
+   * Effects: returns int as center coordinate of Quad
+   */
     unsigned int getWidth() const;
+
+    /*
+   * Requires: nothing
+   * Modifies: nothing
+   * Effects: returns int as center coordinate of Quad
+   */
     unsigned int getHeight() const;
 
     void setColor(double red, double green, double blue);
