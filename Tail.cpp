@@ -19,8 +19,8 @@ Tail::Tail(int sideLength, int x, int y) {
 }
 
 void Tail::move(int deltaX, int deltaY) {
-    x += deltaX;
-    y += deltaY;
+    x = deltaX;
+    y = deltaY;
 }
 
 void Tail::resize(unsigned int width, unsigned int height) {

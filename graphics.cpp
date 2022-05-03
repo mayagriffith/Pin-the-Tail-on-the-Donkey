@@ -21,7 +21,7 @@ vector<Quad> confetti;
 enum screen {open, tutorialScreen,easyScreen, mediumScreen, hardScreen, close};
 screen screenStatus = open;
 Donkey gerald(6, 180, 250);
-Tail geraldTail(6,300,350);
+Tail geraldTail(6,425,333);
 
 
 void init() {
@@ -231,6 +231,11 @@ void cursor(int x, int y) {
     }
     else{
         spawn.release();
+    }
+
+    if (screenStatus == tutorialScreen){
+        geraldTail.move(x,y);
+        glutPostRedisplay();
     }
 
     glutPostRedisplay();

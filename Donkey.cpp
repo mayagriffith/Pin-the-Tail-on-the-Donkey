@@ -20,8 +20,8 @@ Donkey::Donkey(int sideLength, int x, int y) {
 }
 
 void Donkey::move(int deltaX, int deltaY) {
-    x += deltaX;
-    y += deltaY;
+    x = deltaX;
+    y = deltaY;
 }
 
 void Donkey::resize(unsigned int width, unsigned int height) {
