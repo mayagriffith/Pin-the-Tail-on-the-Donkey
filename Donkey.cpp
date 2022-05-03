@@ -37,6 +37,21 @@ void Donkey::resize(unsigned int width, unsigned int height) {
     y = height;
 }
 
+
+bool Donkey::userOverlappingDonkey(int x, int y) const{
+    bool overlapping = false;
+    if(this->getX()<x&&this->getY()<y){
+        overlapping=true;
+    }
+    return overlapping;
+
+}
+
+//void Donkey::hide() {
+//
+//}
+
+
 void Donkey::draw() const {
     // Don't forget to set the color to the fill field
     int SIDE_LENGTH = sideLength;
