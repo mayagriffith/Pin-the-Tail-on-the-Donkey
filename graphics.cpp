@@ -6,9 +6,11 @@
 #include <iostream>
 #include <time.h>
 #include <vector>
+#include <string>
 using namespace std;
 
-GLdouble width, height;
+GLdouble width = 600;
+GLdouble height = 800;
 int wd;
 int numTries;
 int maxTries;
@@ -20,7 +22,8 @@ Button hard({.023,.19,.029},{415,555}, 250,150,"Hard");
 vector<Quad> confetti;
 enum screen {open, tutorialScreen,easyScreen, mediumScreen, hardScreen, close};
 screen screenStatus = open;
-Donkey gerald(6, 180, 250);
+Donkey geraldTut(6, 180, 250);
+Donkey gerald(2, rand() % (int)width, rand() % (int)height);
 Tail geraldTail(6,425,333);
 
 
@@ -108,7 +111,7 @@ void display() {
         for (const char &letter : label) {
             glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, letter);
         }
-        gerald.draw();
+        geraldTut.draw();
         geraldTail.draw();
         glFlush();
     }
@@ -132,6 +135,7 @@ void display() {
                 glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, letter);
             }
         }
+        gerald.draw();
         glFlush();
     }
 
@@ -154,7 +158,7 @@ void display() {
                 glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, letter);
             }
         }
-
+        gerald.draw();
     }
 
     if (screenStatus == hardScreen){
@@ -176,7 +180,7 @@ void display() {
                 glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, letter);
             }
         }
-
+        gerald.draw();
     }
 
     if (screenStatus == close){

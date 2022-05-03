@@ -19,6 +19,14 @@ Donkey::Donkey(int sideLength, int x, int y) {
     this->y = y;
 }
 
+int Donkey::getX() const {
+    return x;
+}
+
+int Donkey::getY() const {
+    return y;
+}
+
 void Donkey::move(int deltaX, int deltaY) {
     x = deltaX;
     y = deltaY;
@@ -49,7 +57,7 @@ void Donkey::draw() const {
             case 'c': glColor3f(0, 1, 1); break;//cyan
             case 't': glColor3f(.5, .5, .5); break;//grey
             case 'l': glColor3f(.3, .3, .3); break;//darker gray
-            case ' ': glColor3f(0.43, 0.32, 0.19); break;//dark brown background color
+            case ' ': glColor4f(0.43, 0.32, 0.19,0); break;//dark brown background color
 
             default: // newline
                 draw = false;

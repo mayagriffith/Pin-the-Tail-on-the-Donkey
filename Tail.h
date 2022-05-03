@@ -16,6 +16,9 @@ public:
     Tail();
     Tail(int sideLength, int x, int y);
 
+    int getX() const;
+    int getY() const;
+
     void move(int deltaX, int deltaY);
     void resize(unsigned int width, unsigned int height);
 

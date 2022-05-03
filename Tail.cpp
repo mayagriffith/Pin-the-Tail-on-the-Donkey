@@ -18,6 +18,14 @@ Tail::Tail(int sideLength, int x, int y) {
     this->y = y;
 }
 
+int Tail::getX() const {
+    return x;
+}
+
+int Tail::getY() const {
+    return y;
+}
+
 void Tail::move(int deltaX, int deltaY) {
     x = deltaX;
     y = deltaY;
