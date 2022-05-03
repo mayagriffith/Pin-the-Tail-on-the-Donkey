@@ -186,10 +186,9 @@ void display() {
         for (const char &letter : label) {
             glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, letter);
         }
-        drawDonkey(115,250,8);
+        drawDonkey(150,250,8);
 
         glFlush();
-
     }
 
 
@@ -214,6 +213,7 @@ void display() {
             }
         }
         drawDonkey(xCoord, yCoord,2);
+        glFlush();
     }
 
     if (screenStatus == mediumScreen){
@@ -315,6 +315,7 @@ void cursor(int x, int y) {
     else{
         spawn.release();
     }
+
     glutPostRedisplay();
 }
 
