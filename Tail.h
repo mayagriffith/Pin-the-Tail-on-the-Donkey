@@ -1,31 +1,21 @@
 //
-// Created by Maya Griffith on 5/2/22.
+// Created by Maya Griffith on 5/3/22.
 //
 
-#ifndef FINAL_PROJECT_CPLEFKA_MGRIFF13_DONKEY_H
-#define FINAL_PROJECT_CPLEFKA_MGRIFF13_DONKEY_H
+#ifndef FINAL_PROJECT_CPLEFKA_MGRIFF13_TAIL_H
+#define FINAL_PROJECT_CPLEFKA_MGRIFF13_TAIL_H
 
 
-struct color {
-    double red;
-    double green;
-    double blue;
-};
+class Tail {
 
-struct point {
-    int x;
-    int y;
-};
-
-class Donkey {
 protected:
     point center;
     unsigned int width;
     unsigned int height;
 public:
     //constructors
-    Donkey();
-    Donkey(point center, unsigned int width, unsigned int height);
+    Tail();
+    Tail(point center, unsigned int width, unsigned int height);
 
     //getters setters
     int getCenterX() const;
@@ -47,4 +37,4 @@ public:
 };
 
 
-#endif //FINAL_PROJECT_CPLEFKA_MGRIFF13_DONKEY_H
+#endif //FINAL_PROJECT_CPLEFKA_MGRIFF13_TAIL_H
