@@ -5,6 +5,7 @@
 #include <fstream>
 #include <iostream>
 #include <vector>
+using namespace std;
 
 Donkey::Donkey() {
     int sideLength = 8;
@@ -48,12 +49,11 @@ void Donkey::draw() const {
             case 'c': glColor3f(0, 1, 1); break;//cyan
             case 't': glColor3f(.5, .5, .5); break;//grey
             case 'l': glColor3f(.3, .3, .3); break;//darker gray
-            case ' ': glColor3f(1, 1, 1); break;//white?
-
+            case ' ': glColor3f(0.43, 0.32, 0.19); break;//dark brown background color
 
             default: // newline
                 draw = false;
-                xCoord = 0;
+                xCoord = x;
                 yCoord += SIDE_LENGTH;
         }
         if (draw) {

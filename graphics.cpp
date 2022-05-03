@@ -1,6 +1,7 @@
 #include "graphics.h"
 #include "Button.h"
 #include "Donkey.h"
+#include "Tail.h"
 #include <fstream>
 #include <iostream>
 #include <time.h>
@@ -19,7 +20,8 @@ Button hard({.023,.19,.029},{415,555}, 250,150,"Hard");
 vector<Quad> confetti;
 enum screen {open, tutorialScreen,easyScreen, mediumScreen, hardScreen, close};
 screen screenStatus = open;
-Donkey gerald(8, 150, 250);
+Donkey gerald(6, 180, 250);
+Tail geraldTail(6,300,350);
 
 
 void init() {
@@ -105,6 +107,7 @@ void display() {
             glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, letter);
         }
         gerald.draw();
+        geraldTail.draw();
         glFlush();
     }
 
@@ -236,20 +239,6 @@ void cursor(int x, int y) {
 // button will be GLUT_LEFT_BUTTON or GLUT_RIGHT_BUTTON
 // state will be GLUT_UP or GLUT_DOWN
 void mouse(int button, int state, int x, int y) {
-    //If the left button is down and the cursor is overlapping with the Button, call the pressDown method. Otherwise, call the release method.
-    if(button==GLUT_LEFT_BUTTON && state == GLUT_DOWN && spawn.isOverlapping(x,y)){
-        spawn.pressDown();
-    }
-    else{
-        spawn.release();
-    }
-
-    //If the left button is up and the cursor is overlapping with the Button, call spawnConfetti.
-    if(button==GLUT_LEFT_BUTTON && state == GLUT_UP && spawn.isOverlapping(x,y)){
-        spawnConfetti();
-    }
-
-
     //If it is the opening screen go to the corresponding screen of the user button click
     if(screenStatus == open){
         if(button==GLUT_LEFT_BUTTON && state == GLUT_UP && tutorial.isOverlapping(x,y)){

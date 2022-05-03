@@ -7,27 +7,14 @@
 
 
 class Tail {
-
 protected:
-    point center;
-    unsigned int width;
-    unsigned int height;
+    unsigned int sideLength;
+    unsigned int x;
+    unsigned int y;
 public:
     //constructors
     Tail();
-    Tail(point center, unsigned int width, unsigned int height);
-
-    //getters setters
-    int getCenterX() const;
-    int getLeftX() const;
-    int getRightX() const;
-    int getCenterY() const;
-    int getTopY() const;
-    int getBottomY() const;
-    point getCenter() const;
-
-    unsigned int getWidth() const;
-    unsigned int getHeight() const;
+    Tail(int sideLength, int x, int y);
 
     void move(int deltaX, int deltaY);
     void resize(unsigned int width, unsigned int height);
@@ -35,6 +22,5 @@ public:
     virtual void draw() const;
 
 };
-
 
 #endif //FINAL_PROJECT_CPLEFKA_MGRIFF13_TAIL_H
