@@ -40,6 +40,7 @@ public:
     void resize(unsigned int width, unsigned int height);
 
     virtual void draw() const;
+    void drawFullDonkey() const;
 
 };
 

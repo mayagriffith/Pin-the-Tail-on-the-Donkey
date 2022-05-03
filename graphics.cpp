@@ -18,7 +18,7 @@ Button tutorial({.45,.97,.46},{160,400}, 250,150,"Tutorial");
 Button easy({.23,.54,.24},{415,400}, 250,150,"Easy");
 Button medium({.141,.35,.149},{160,555}, 250,150,"Medium");
 Button hard({.023,.19,.029},{415,555}, 250,150,"Hard");
-vector<Quad> confetti;
+Button test({1, 0, 0}, {430, 350}, 30, 30, "Test");
 enum screen {open, tutorialScreen,easyScreen, mediumScreen, hardScreen, close};
 screen screenStatus = open;
 Donkey geraldTut(6, 180, 250);
@@ -112,6 +112,7 @@ void display() {
         }
         geraldTut.draw();
         geraldTail.draw();
+        test.draw();
         glFlush();
     }
 
@@ -256,15 +257,20 @@ void mouse(int button, int state, int x, int y) {
         }
         if(button==GLUT_LEFT_BUTTON && state == GLUT_UP && easy.isOverlapping(x,y)){
             screenStatus = easyScreen;
-            gerald.move(rand()%int(width),rand()%int(height));
+            gerald.move(rand()%int(width-120),rand()%int(height-120)+30);
         }
         if(button==GLUT_LEFT_BUTTON && state == GLUT_UP && medium.isOverlapping(x,y)){
             screenStatus = mediumScreen;
-            gerald.move(rand()%int(width),rand()%int(height));
+            gerald.move(rand()%int(width-120),rand()%int(height-120)+30);
         }
         if(button==GLUT_LEFT_BUTTON && state == GLUT_UP && hard.isOverlapping(x,y)){
             screenStatus = hardScreen;
-            gerald.move(rand()%int(width),rand()%int(height));
+            gerald.move(rand()%int(width-120),rand()%int(height-120)+30);
+        }
+    }
+    if (screenStatus == tutorialScreen){
+        if(button==GLUT_LEFT_BUTTON && state == GLUT_UP && (x>415 && x< 445) && (y>335 && y<365)){
+            geraldTut.drawFullDonkey();
         }
     }
 
