@@ -21,9 +21,6 @@ enum screen {open, tutorialScreen,easyScreen, mediumScreen, hardScreen, close};
 screen screenStatus = open;
 Donkey gerald(8, 150, 250);
 
-void spawnConfetti() {
-    confetti.push_back(Quad({rand() % 10 / 10.0, rand() % 10 / 10.0, rand() % 10 / 10.0}, {rand() % (int)width, rand() % (int)height}, 10, 10));
-}
 
 void init() {
     width = 600;
@@ -36,7 +33,6 @@ void initGL() {
     // Set "clearing" or background color
     glClearColor(0.43f, 0.32f, 0.19f, 1.0f); // Green and opaque
 }
-
 
 void initUser() {
     //user is the tail

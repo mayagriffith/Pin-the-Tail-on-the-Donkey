@@ -1,6 +1,10 @@
 #include "Quad.h"
 #include "graphics.h"
 #include "Donkey.h"
+#include <ctime>
+#include <fstream>
+#include <iostream>
+#include <vector>
 
 Donkey::Donkey() {
     int sideLength = 8;
@@ -14,59 +18,19 @@ Donkey::Donkey(int sideLength, int x, int y) {
     this->y = y;
 }
 
-int Donkey::getCenterX() const {
-    return center.x;
-}
-
-int Donkey::getLeftX() const {
-    return center.x - (width / 2);
-}
-
-int Donkey::getRightX() const {
-    return center.x + (width / 2);
-}
-
-int Donkey::getCenterY() const {
-    return center.y;
-}
-
-int Donkey::getTopY() const {
-    return center.y - (height / 2);
-}
-
-int Donkey::getBottomY() const {
-    return center.y + (height / 2);
-}
-
-unsigned int Donkey::getWidth() const {
-    return width;
-}
-
-unsigned int Donkey::getHeight() const {
-    return height;
-}
-
-void Donkey::setColor(double red, double green, double blue) {
-    fill = {red, green, blue};
-}
-
-void Donkey::setColor(color fill) {
-    this->fill = fill;
-}
-
 void Donkey::move(int deltaX, int deltaY) {
-    center.x += deltaX;
-    center.y += deltaY;
+    x += deltaX;
+    y += deltaY;
 }
 
 void Donkey::resize(unsigned int width, unsigned int height) {
-    this->width = width;
-    this->height = height;
+    x = width;
+    y = height;
 }
 
 void Donkey::draw() const {
     // Don't forget to set the color to the fill field
-    SIDE_LENGTH = sideLength;
+    int SIDE_LENGTH = sideLength;
     ifstream inFile("../scene.txt");
     inFile >> noskipws;
     int xCoord = x, yCoord = y;
