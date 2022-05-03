@@ -64,6 +64,47 @@ void drawDonkey(int x, int y, int sideLength){
     inFile.close();
 }
 
+void drawUser(int x, int y, int sideLength) {
+    int SIDE_LENGTH = sideLength;
+    ifstream inFile("../tail.txt");
+    inFile >> noskipws;
+    int xCoord = x;
+    int yCoord = y;
+    char letter;
+    bool draw;
+    while (inFile >> letter) {
+        draw = true;
+        switch(letter) {
+            case 'r': glColor3f(1, 0, 0); break;//red
+            case 'n' :glColor3f(.43, 1/2, 1/2); break;//brown
+            case 'g': glColor3f(0, 1, 0); break;//green
+            case 'b': glColor3f(0, 0, 0); break;//black
+            case 'y': glColor3f(1, 1, 0); break;//yellow
+            case 'm': glColor3f(1, 0, 1); break;//magenta
+            case 'c': glColor3f(0, 1, 1); break;//cyan
+            case 't': glColor3f(.5, .5, .5); break;//grey
+            case 'l': glColor3f(.3, .3, .3); break;//darker gray
+            case ' ': glColor3f(0.43f, 0.32f, 0.19f); break;//white
+
+
+            default: // newline
+                draw = false;
+                xCoord = 0;
+                yCoord += SIDE_LENGTH;
+        }
+        if (draw) {
+            glBegin(GL_QUADS);
+            glVertex2i(xCoord, yCoord);
+            glVertex2i(xCoord+SIDE_LENGTH, yCoord);
+            glVertex2i(xCoord+SIDE_LENGTH, yCoord+SIDE_LENGTH);
+            glVertex2i(xCoord, yCoord+SIDE_LENGTH);
+            glEnd();
+            xCoord += SIDE_LENGTH;
+        }
+    }
+    inFile.close();
+}
+
 void init() {
     width = 600;
     height = 800;
@@ -74,6 +115,19 @@ void init() {
 void initGL() {
     // Set "clearing" or background color
     glClearColor(0.43f, 0.32f, 0.19f, 1.0f); // Green and opaque
+}
+
+
+void initUser() {
+    //user is the tail
+    //switch screens for each level?
+    //user.setSize(20.0,20.0);
+    //
+    //user.setColor(white);
+
+    // centered in the top left corner of the graphics window
+    //user.setCenter(0,0);
+
 }
 
 /* Handler for window-repaint event. Call back when the window first appears and
@@ -138,8 +192,7 @@ void display() {
     }
 
 
-    int xCoord = rand() % (int)width;
-    int yCoord = rand() % (int)height + 50;
+
     if (screenStatus == easyScreen){
         numTries = 0;
         maxTries = 8;
