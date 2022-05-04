@@ -39,6 +39,30 @@ void Donkey::resize(unsigned int width, unsigned int height) {
     y = height;
 }
 
+//int Donkey::calculateDistance(int x, int y) {
+// int sqrtThis = pow(this->getX(),2)+ pow(this->getX(),2)
+// distanceFromDonkey = sqrt(sqrtThis);
+//return distanceFromDonkey;
+//}
+
+
+bool Donkey::userOverlappingDonkey(int x, int y) const{
+    bool overlapping = false;
+    cout << this->getX() << endl;
+    cout << this->getY() << endl;
+    int b = 100;
+    if(this->getX()+b<x && this->getX()+b+50*sideLength>x && this->getY()<y && this->getY()+90*sideLength>y){
+        overlapping=true;
+    }
+    return overlapping;
+
+}
+
+//void Donkey::hide() {
+//
+//}
+
+
 void Donkey::draw() const {
     // Don't forget to set the color to the fill field
     int SIDE_LENGTH = sideLength;

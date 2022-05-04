@@ -2,6 +2,8 @@
 #define FINAL_PROJECT_CPLEFKA_MGRIFF13_DONKEY_H
 
 
+#include "Tail.h"
+
 class Donkey {
 protected:
     unsigned int sideLength;
@@ -39,6 +41,15 @@ public:
      * Effects: moves the Donkey
      */
     void resize(unsigned int width, unsigned int height);
+
+    /*
+     * Requires: x and y coordinate
+     * Modifies: nothing
+     * Effects: returns true if user is overlapping the donkey
+     */
+    bool userOverlappingDonkey(int x, int y) const;
+
+    int calculateDistance(int x, int y);
 
     virtual void draw() const;
     void drawFullDonkey() const;

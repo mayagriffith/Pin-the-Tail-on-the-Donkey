@@ -12,15 +12,15 @@ bttb bt tbb bb
    btttbbtttttttbbnnbb
    btttttttlltttttbbnnbb         bb
    btttttttlllttttbbbcbbbbbbbbbbbcbbbbbbb
-   bttttttllblttttttbcbyyyyyyyyybcbltttbb btb
-   bbttttlllblltttttbcbyyyyyyyyybcbltttttb  btb
-  bnnbtttlllblltttttbcbbyyyyyyybbcbltttttb   btb
-  bbbbbblllbllllttttlbccbbbbbbbccblttttttb    btb
-  b  byblllbllllttttlbbbcccccccblttttttttb     btb
- b  tbbbblb blllltttttttbbbbbbbblttttttttb       bttb
- b  ttbnbb  bllllttttttttlbybllttttttttttb        bttb
- btttttbb    bllbttttttttbbbbblltttttttttb          btb
-  btttbbyb   bllbtttttbttbcccblltttbttttttb            b
+   bttttttllblttttttbcbyyyyyyyyybcbltttbbbtb
+   bbttttlllblltttttbcbyyyyyyyyybcbltttttb btb
+  bnnbtttlllblltttttbcbbyyyyyyybbcbltttttb  btb
+  bbbbbblllbllllttttlbccbbbbbbbccblttttttb   btb
+  b  byblllbllllttttlbbbcccccccblttttttttb    btb
+ b  tbbbblb blllltttttttbbbbbbbblttttttttb      bttb
+ b  ttbnbb  bllllttttttttlbybllttttttttttb       bttb
+ btttttbb    bllbttttttttbbbbblltttttttttb         btb
+  btttbbyb   bllbtttttbttbcccblltttbttttttb           b
    bbb byb    bllbtttlbttbbbbbtttttbttttttb
    byb byb    bllbtttlbttttttttttttbltttttb
    byb byb     blbttlbttttttttttttblbltttttb
