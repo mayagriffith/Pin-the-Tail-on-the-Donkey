@@ -7,6 +7,7 @@ protected:
     unsigned int sideLength;
     unsigned int x;
     unsigned int y;
+    bool tail;
 public:
     /*
      * Default Constructor
@@ -20,7 +21,7 @@ public:
      * Modifies: nothing
      * Effects: sets sideLength to parameter, x and y to parameter
      */
-    Donkey(int sideLength, int x, int y);
+    Donkey(int sideLength, int x, int y, bool tail);
 
     int getX() const;
     int getY() const;
