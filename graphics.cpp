@@ -11,9 +11,9 @@ using namespace std;
 
 GLdouble width, height;
 int wd;
-int numTries;
+int numTries = 0;
 int maxTries;
-bool won = false;
+bool gameWon = false;
 Button spawn({1, 0, 0}, {100, 100}, 100, 50, "Spawn");
 Button tutorial({.45,.97,.46},{160,400}, 250,150,"Tutorial");
 Button easy({.23,.54,.24},{415,400}, 250,150,"Easy");
@@ -24,7 +24,8 @@ enum screen {open, tutorialScreen,easyScreen, mediumScreen, hardScreen, close};
 screen screenStatus = open;
 Donkey geraldTut(6, 180, 250);
 Donkey gerald(3, 100, 100);
-Tail geraldTail(6,425,333);
+Tail geraldTail(3,425,333);
+Tail geraldTutTail(6, 425, 333);
 
 
 void init() {
@@ -107,14 +108,14 @@ void display() {
         for (const char &letter : label) {
             glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, letter);
         }
-        label= "             ~ Press 'r' to reset the placement of the tail, and 'b' to return to the home screen ";
+        label= "                                         ~ Press 'b' to return to the home screen ";
         glRasterPos2i(75,150);
         for (const char &letter : label) {
             glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, letter);
         }
-        if (won==false) {
+        if (gameWon==false) {
             geraldTut.draw();
-            geraldTail.draw();
+            geraldTutTail.draw();
         }
         else {
             geraldTut.drawFullDonkey();
@@ -142,7 +143,7 @@ void display() {
                 glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, letter);
             }
         }
-        if (won==false) {
+        if (gameWon==false) {
             gerald.draw();
             geraldTail.draw();
         }
@@ -171,7 +172,14 @@ void display() {
                 glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, letter);
             }
         }
-        gerald.draw();
+        if (gameWon==false) {
+            gerald.draw();
+            geraldTail.draw();
+        }
+        else {
+            gerald.drawFullDonkey();
+        }
+        glFlush();
     }
 
     if (screenStatus == hardScreen){
@@ -193,13 +201,21 @@ void display() {
                 glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, letter);
             }
         }
-        gerald.draw();
+        if (gameWon==false) {
+            gerald.draw();
+            geraldTail.draw();
+        }
+        else {
+            gerald.drawFullDonkey();
+        }
+        glFlush();
     }
 
     if (screenStatus == close){
         string label;
         if (maxTries == numTries){
             label = "Oh no! You ran out of tries, here's the donkey!";
+            gerald.drawFullDonkey();
         }
         else{
             label = "Good job you pinned the tail on the donkey!";
@@ -223,6 +239,7 @@ void kbd(unsigned char key, int x, int y) {
     }
     if (key == 'b'){
         screenStatus = open;
+        gameWon = false;
     }
 
     glutPostRedisplay();
@@ -253,7 +270,7 @@ void cursor(int x, int y) {
     }
 
     if (screenStatus == tutorialScreen){
-        geraldTail.move(x,y);
+        geraldTutTail.move(x,y);
     }
     if (screenStatus == easyScreen){
         geraldTail.move(x,y);
@@ -293,17 +310,28 @@ void mouse(int button, int state, int x, int y) {
     if (screenStatus == tutorialScreen){
         //donkey is overlapping method instead
         if(button==GLUT_LEFT_BUTTON && state == GLUT_DOWN && gerald.userOverlappingDonkey(x,y)){
-            won= true;
-
+            gameWon= true;
         }
-
     }
-
     else if (screenStatus == easyScreen) {
         //donkey is overlapping method instead
+        if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
+            numTries++;
+            if (gerald.userOverlappingDonkey(x, y)){
+                gameWon = true;
+            }
+        }
+    }
+    else if (screenStatus == mediumScreen) {
+        //donkey is overlapping method instead
         if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN && gerald.userOverlappingDonkey(x, y)) {
-            won = true;
-
+            gameWon = true;
+        }
+    }
+    else if (screenStatus == hardScreen) {
+        //donkey is overlapping method instead
+        if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN && gerald.userOverlappingDonkey(x, y)) {
+            gameWon = true;
         }
     }
 

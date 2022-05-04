@@ -11,14 +11,12 @@ Donkey::Donkey() {
     int sideLength = 8;
     int x = 100;
     int y = 100;
-    bool tail = false;
 }
 
-Donkey::Donkey(int sideLength, int x, int y, bool tail) {
+Donkey::Donkey(int sideLength, int x, int y) {
     this->sideLength = sideLength;
     this->x = x;
     this->y = y;
-    this->tail = tail;
 }
 
 int Donkey::getX() const {
