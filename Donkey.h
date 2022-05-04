@@ -48,6 +48,8 @@ public:
      */
     bool userOverlappingDonkey(int x, int y) const;
 
+    int calculateDistance(int x, int y);
+
     virtual void draw() const;
     void drawFullDonkey() const;
 

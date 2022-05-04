@@ -91,9 +91,9 @@ void display() {
     }
 
     if (screenStatus == tutorialScreen){
-        string label = "~ Your goal is to place the tail on the donkey that is randomly hidden on the screen some where";
-        glRasterPos2i(75,105);
         glColor3f(1, 1, 1);
+        string label = "~ Your goal is to place the tail on the donkey that is randomly hidden on the screen somewhere";
+        glRasterPos2i(75,105);
         for (const char &letter : label) {
             glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, letter);
         }
@@ -115,7 +115,6 @@ void display() {
         if (won==false) {
             geraldTut.draw();
             geraldTail.draw();
-          //  test.draw();
         }
         else {
             geraldTut.drawFullDonkey();
@@ -143,7 +142,13 @@ void display() {
                 glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, letter);
             }
         }
-        gerald.draw();
+        if (won==false) {
+            gerald.draw();
+            geraldTail.draw();
+        }
+        else {
+            gerald.drawFullDonkey();
+        }
         glFlush();
     }
 
@@ -249,7 +254,16 @@ void cursor(int x, int y) {
 
     if (screenStatus == tutorialScreen){
         geraldTail.move(x,y);
-        glutPostRedisplay();
+    }
+    if (screenStatus == easyScreen){
+        geraldTail.move(x,y);
+    }
+
+    if (screenStatus == mediumScreen){
+        geraldTail.move(x,y);
+    }
+    if (screenStatus == hardScreen){
+        geraldTail.move(x,y);
     }
 
     glutPostRedisplay();
@@ -283,6 +297,14 @@ void mouse(int button, int state, int x, int y) {
 
         }
 
+    }
+
+    else if (screenStatus == easyScreen) {
+        //donkey is overlapping method instead
+        if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN && gerald.userOverlappingDonkey(x, y)) {
+            won = true;
+
+        }
     }
 
     glutPostRedisplay();
