@@ -163,7 +163,7 @@ void display() {
         if (gameWon==false) {
             gerald.draw();
             geraldTail.draw();
-            hide.draw();
+//            hide.draw();
             hide.move(300,425);
         }
         else {
@@ -319,6 +319,9 @@ void mouse(int button, int state, int x, int y) {
             if (gerald.userOverlappingDonkey(x, y)){
                 gameWon = true;
             }
+                dist = gerald.calculateDistance(x,y);
+
+
         }
     }
     else if (screenStatus == mediumScreen) {
@@ -326,6 +329,11 @@ void mouse(int button, int state, int x, int y) {
         if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN && gerald.userOverlappingDonkey(x, y)) {
             gameWon = true;
         }
+        if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
+            dist = gerald.calculateDistance(x,y);
+
+        }
+
     }
     else if (screenStatus == hardScreen) {
         //donkey is overlapping method instead
