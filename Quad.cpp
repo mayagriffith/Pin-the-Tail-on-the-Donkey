@@ -76,8 +76,8 @@ void Quad::setColor(color fill) {
 }
 
 void Quad::move(int deltaX, int deltaY) {
-    center.x += deltaX;
-    center.y += deltaY;
+    center.x = deltaX;
+    center.y = deltaY;
 }
 
 void Quad::resize(unsigned int width, unsigned int height) {

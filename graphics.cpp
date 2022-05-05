@@ -19,12 +19,13 @@ Button tutorial({.45,.97,.46},{160,400}, 250,150,"Tutorial");
 Button easy({.23,.54,.24},{415,400}, 250,150,"Easy");
 Button medium({.141,.35,.149},{160,555}, 250,150,"Medium");
 Button hard({.023,.19,.029},{415,555}, 250,150,"Hard");
-//Button test({1, 0, 0}, {430, 350}, 30, 30, "Test");
-enum screen {open, tutorialScreen,easyScreen, mediumScreen, hardScreen, close};
+Button test({1, 0, 0}, {425, 340}, 50, 50, "Test");
+Quad hide({0.43, 0.32, 0.19},{300,450},600,775);
+enum screen {open, tutorialScreen,easyScreen, mediumScreen, hardScreen};
 screen screenStatus = open;
 Donkey geraldTut(6, 180, 250);
-Donkey gerald(3, 100, 100);
-Tail geraldTail(3,425,333);
+Donkey gerald(6, 100, 100);
+Tail geraldTail(6,425,333);
 Tail geraldTutTail(6, 425, 333);
 
 
@@ -116,6 +117,7 @@ void display() {
         if (gameWon==false) {
             geraldTut.draw();
             geraldTutTail.draw();
+            test.draw();
         }
         else {
             geraldTut.drawFullDonkey();
@@ -127,9 +129,9 @@ void display() {
     if (screenStatus == easyScreen){
         numTries = 0;
         maxTries = 8;
-        if (numTries == 0){
+        if (true){
             string label = "The donkey is hidden somewhere random on the screen, you have 8 tries to find it!";
-            glRasterPos2i(100,50);
+            glRasterPos2i(25,50);
             glColor3f(1, 1, 1);
             for (const char &letter : label) {
                 glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, letter);
@@ -137,7 +139,7 @@ void display() {
         }
         else{
             string label = "The donkey is hidden somewhere random on the screen, you have "+ to_string(maxTries - numTries)  + " more tries to find it!";
-            glRasterPos2i(95,50);
+            glRasterPos2i(25,50);
             glColor3f(1, 1, 1);
             for (const char &letter : label) {
                 glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, letter);
@@ -146,9 +148,12 @@ void display() {
         if (gameWon==false) {
             gerald.draw();
             geraldTail.draw();
+            hide.draw();
+            hide.move(300,425);
         }
         else {
             gerald.drawFullDonkey();
+            hide.move(10000,10000);
         }
         glFlush();
     }
@@ -211,22 +216,6 @@ void display() {
         glFlush();
     }
 
-    if (screenStatus == close){
-        string label;
-        if (maxTries == numTries){
-            label = "Oh no! You ran out of tries, here's the donkey!";
-            gerald.drawFullDonkey();
-        }
-        else{
-            label = "Good job you pinned the tail on the donkey!";
-        }
-        glRasterPos2i(150,100);
-        for (const char &letter : label) {
-            glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, letter);
-
-        }
-        glFlush();
-    }
     glFlush();  // Render now
 }
 
@@ -316,7 +305,6 @@ void mouse(int button, int state, int x, int y) {
     else if (screenStatus == easyScreen) {
         //donkey is overlapping method instead
         if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
-            numTries++;
             if (gerald.userOverlappingDonkey(x, y)){
                 gameWon = true;
             }
