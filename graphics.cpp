@@ -130,8 +130,8 @@ void display() {
 
     if (screenStatus == easyScreen){
         if (gameWon==false){
-            string label = "The donkey is hidden somewhere random on the screen, you have 8 tries to find it!";
-            glRasterPos2i(100,10);
+            string label = "The donkey is hidden somewhere random on the screen, you have 8 tries to find it! \n";
+            glRasterPos2i(100,30);
             glColor3f(1, 1, 1);
             for (const char &letter : label) {
                 glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, letter);
@@ -151,6 +151,11 @@ void display() {
 
             glRasterPos2f(200, 200);
 
+            gerald.draw();
+            geraldTail.draw();
+            //hide.draw();
+            hide.move(300,425);
+
         }
         else{
             string label = "The donkey is hidden somewhere random on the screen, you have "+ to_string(maxTries - numTries)  + " more tries to find it!";
@@ -159,14 +164,6 @@ void display() {
             for (const char &letter : label) {
                 glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, letter);
             }
-        }
-        if (gameWon==false) {
-            gerald.draw();
-            geraldTail.draw();
-            hide.draw();
-            hide.move(300,425);
-        }
-        else {
             gerald.drawFullDonkey();
             hide.move(10000,10000);
         }
