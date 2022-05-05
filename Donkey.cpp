@@ -49,7 +49,7 @@ bool Donkey::userOverlappingDonkey(int x, int y) const{
     cout <<"User X: " <<x << endl;
     cout <<"User Y: " << y << endl;
     int b = 500/sideLength;
-    if(this->getX()+b<x && this->getX()+b+50*sideLength>x && this->getY()+b<y && this->getY()+90*sideLength>y){
+    if(this->getX()+b<x && this->getX()+b+50*sideLength>x && this->getY()<y && this->getY()+50*sideLength>y){
         overlapping=true;
     }
     return overlapping;
