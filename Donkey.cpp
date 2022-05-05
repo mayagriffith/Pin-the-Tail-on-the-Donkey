@@ -37,19 +37,19 @@ void Donkey::resize(unsigned int width, unsigned int height) {
     y = height;
 }
 
-//int Donkey::calculateDistance(int x, int y) {
-// int sqrtThis = pow(this->getX(),2)+ pow(this->getX(),2)
-// distanceFromDonkey = sqrt(sqrtThis);
-//return distanceFromDonkey;
-//}
+int Donkey::calculateDistance(int x, int y) {
+return sqrt(pow(this->getX() - x, 2) + pow(this->getY() - y, 2) * 1.0);
+}
 
 
 bool Donkey::userOverlappingDonkey(int x, int y) const{
     bool overlapping = false;
-    cout << this->getX() << endl;
-    cout << this->getY() << endl;
-    int b = 100;
-    if(this->getX()+b<x && this->getX()+b+50*sideLength>x && this->getY()<y && this->getY()+90*sideLength>y){
+    cout <<"Donkey X: " << this->getX() << endl;
+    cout <<"Donkey Y: " << this->getY() << endl;
+    cout <<"User X: " <<x << endl;
+    cout <<"User Y: " << y << endl;
+    int b = 500/sideLength;
+    if(this->getX()+b<x && this->getX()+b+50*sideLength>x && this->getY()+b<y && this->getY()+90*sideLength>y){
         overlapping=true;
     }
     return overlapping;
