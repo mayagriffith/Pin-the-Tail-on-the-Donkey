@@ -20,7 +20,7 @@ Button easy({.23,.54,.24},{415,400}, 250,150,"Easy");
 Button medium({.141,.35,.149},{160,555}, 250,150,"Medium");
 Button hard({.023,.19,.029},{415,555}, 250,150,"Hard");
 Button test({1, 0, 0}, {425, 340}, 50, 50, "Test");
-Quad hide({0.43, 0.32, 0.19},{300,450},600,775);
+Quad hide({0.43, 0.32, 0.5},{300,450},600,775);
 enum screen {open, tutorialScreen,easyScreen, mediumScreen, hardScreen};
 screen screenStatus = open;
 Donkey geraldTut(6, 180, 250);
@@ -131,9 +131,9 @@ void display() {
     if (screenStatus == easyScreen){
         numTries = 0;
         maxTries = 8;
-        if (true){
+        if (5<7){
             string label = "The donkey is hidden somewhere random on the screen, you have 8 tries to find it!";
-            glRasterPos2i(25,50);
+            glRasterPos2i(100,10);
             glColor3f(1, 1, 1);
             for (const char &letter : label) {
                 glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, letter);
@@ -165,7 +165,7 @@ void display() {
         if (gameWon==false) {
             gerald.draw();
             geraldTail.draw();
-            hide.draw();
+            //hide.draw();
             hide.move(300,425);
         }
         else {
@@ -302,15 +302,15 @@ void mouse(int button, int state, int x, int y) {
         }
         if(button==GLUT_LEFT_BUTTON && state == GLUT_UP && easy.isOverlapping(x,y)){
             screenStatus = easyScreen;
-            gerald.move(rand()%int(width-120),rand()%int(height-120)+30);
+            gerald.move(rand()%int(320),rand()%int(550)+30);
         }
         if(button==GLUT_LEFT_BUTTON && state == GLUT_UP && medium.isOverlapping(x,y)){
             screenStatus = mediumScreen;
-            gerald.move(rand()%int(width-120),rand()%int(height-120)+30);
+            gerald.move(rand()%int(320),rand()%int(550)+30);
         }
         if(button==GLUT_LEFT_BUTTON && state == GLUT_UP && hard.isOverlapping(x,y)){
             screenStatus = hardScreen;
-            gerald.move(rand()%int(width-120),rand()%int(height-120)+30);
+            gerald.move(rand()%int(320),rand()%int(550)+30);
         }
     }
     if (screenStatus == tutorialScreen){
