@@ -131,7 +131,7 @@ void display() {
     if (screenStatus == easyScreen){
         numTries = 0;
         maxTries = 8;
-        if (5<7){
+        if (gameWon==false){
             string label = "The donkey is hidden somewhere random on the screen, you have 8 tries to find it!";
             glRasterPos2i(100,10);
             glColor3f(1, 1, 1);
