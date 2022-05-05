@@ -28,6 +28,8 @@ Donkey gerald(6, 100, 100);
 Tail geraldTail(6,425,333);
 Tail geraldTutTail(6, 425, 333);
 
+int dist = 0;
+int p=0;
 
 void init() {
     width = 600;
@@ -136,6 +138,21 @@ void display() {
             for (const char &letter : label) {
                 glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, letter);
             }
+            string distanceScore = "Your distance is:";
+            p = dist;
+            int j = 0;
+            int k = 0;
+            while(p > 9)
+            {
+                k = p % 10;
+                glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24,48+k);
+                j++;
+                p /= 10;
+            }
+            glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24,48+p);
+
+            glRasterPos2f(200, 200);
+
         }
         else{
             string label = "The donkey is hidden somewhere random on the screen, you have "+ to_string(maxTries - numTries)  + " more tries to find it!";
@@ -321,6 +338,11 @@ void mouse(int button, int state, int x, int y) {
         if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN && gerald.userOverlappingDonkey(x, y)) {
             gameWon = true;
         }
+        if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
+            dist = gerald.calculateDistance(x,y);
+
+        }
+
     }
 
     glutPostRedisplay();
