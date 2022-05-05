@@ -1,7 +1,5 @@
 #ifndef FINAL_PROJECT_CPLEFKA_MGRIFF13_DONKEY_H
 #define FINAL_PROJECT_CPLEFKA_MGRIFF13_DONKEY_H
-
-
 #include "Tail.h"
 
 class Donkey {
