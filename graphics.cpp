@@ -129,8 +129,6 @@ void display() {
     }
 
     if (screenStatus == easyScreen){
-        numTries = 0;
-        maxTries = 8;
         if (5<7){
             string label = "The donkey is hidden somewhere random on the screen, you have 8 tries to find it!";
             glRasterPos2i(100,10);
@@ -165,7 +163,7 @@ void display() {
         if (gameWon==false) {
             gerald.draw();
             geraldTail.draw();
-            //hide.draw();
+            hide.draw();
             hide.move(300,425);
         }
         else {
@@ -176,8 +174,6 @@ void display() {
     }
 
     if (screenStatus == mediumScreen){
-        numTries = 0;
-        maxTries = 5;
         if (numTries == 0){
             string label = "The donkey is hidden somewhere random on the screen, you have 5 tries to find it!";
             glRasterPos2i(100,50);
@@ -205,8 +201,6 @@ void display() {
     }
 
     if (screenStatus == hardScreen){
-        numTries = 0;
-        maxTries = 3;
         if (numTries == 0){
             string label = "The donkey is hidden somewhere random on the screen, you have 3 tries to find it!";
             glRasterPos2i(100,50);
