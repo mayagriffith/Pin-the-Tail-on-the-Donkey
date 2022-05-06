@@ -153,7 +153,7 @@ void display() {
 
             gerald.draw();
             geraldTail.draw();
-            //hide.draw();
+            hide.draw();
             hide.move(300,425);
 
         }
@@ -324,6 +324,7 @@ void mouse(int button, int state, int x, int y) {
             if (gerald.userOverlappingDonkey(x, y)){
                 gameWon = true;
             }
+                numTries++;
                 dist = gerald.calculateDistance(x,y);
 
 
@@ -336,7 +337,7 @@ void mouse(int button, int state, int x, int y) {
         }
         if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
             dist = gerald.calculateDistance(x,y);
-
+            numTries++;
         }
 
     }
@@ -347,7 +348,7 @@ void mouse(int button, int state, int x, int y) {
         }
         if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
             dist = gerald.calculateDistance(x,y);
-
+            numTries++;
         }
 
     }
