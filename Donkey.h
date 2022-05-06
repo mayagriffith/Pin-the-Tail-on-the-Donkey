@@ -22,7 +22,9 @@ public:
      */
     Donkey(int sideLength, int x, int y);
 
+    //getter for x coordinate
     int getX() const;
+    //getter for y coordinate
     int getY() const;
 
     /*
@@ -46,9 +48,25 @@ public:
      */
     bool userOverlappingDonkey(int x, int y) const;
 
+    /*
+   * Requires: x and y coordinate
+   * Modifies: nothing
+   * Effects: returns an int  of how far the coordinates are from the donkey.
+   */
     int calculateDistance(int x, int y);
 
+    /*
+    * Requires:nothing
+    * Modifies: nothing
+    * Effects: draws the donkey without the tail
+    */
     virtual void draw() const;
+
+    /*
+  * Requires:nothing
+  * Modifies: nothing
+  * Effects: draws the full donkey with the tail.
+  */
     void drawFullDonkey() const;
 
 };

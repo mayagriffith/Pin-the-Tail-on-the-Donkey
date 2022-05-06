@@ -28,7 +28,6 @@ Tail geraldTail(6,425,333);
 Tail geraldTutTail(6, 425, 333);
 
 int dist = 0;
-int p=0;
 
 void init() {
     width = 600;
@@ -237,6 +236,7 @@ void kbd(unsigned char key, int x, int y) {
         glutDestroyWindow(wd);
         exit(0);
     }
+    //if you want to go back to the open screen
     if (key == 'b'){
         screenStatus = open;
         gameWon = false;
@@ -293,18 +293,22 @@ void cursor(int x, int y) {
 void mouse(int button, int state, int x, int y) {
     //If it is the opening screen go to the corresponding screen of the user button click
     if(screenStatus == open){
+        //if click on tutorial screen button, go to tutorial
         if(button==GLUT_LEFT_BUTTON && state == GLUT_UP && tutorial.isOverlapping(x,y)){
             screenStatus = tutorialScreen;
         }
+        //if click on easy screen button, go to easy. Move gerald somewhere random on the screen.
         if(button==GLUT_LEFT_BUTTON && state == GLUT_UP && easy.isOverlapping(x,y)){
             screenStatus = easyScreen;
             gerald.move(rand()%int(320),rand()%int(550)+30);
         }
+        //if click on medium screen button, go to medium. Move gerald somewhere random on the screen.
         if(button==GLUT_LEFT_BUTTON && state == GLUT_UP && medium.isOverlapping(x,y)){
             screenStatus = mediumScreen;
             gerald.move(rand()%int(320),rand()%int(550)+30);
             maxTries = 5;
         }
+        //if click on hard screen button, go to hard. Move gerald somewhere random on the screen.
         if(button==GLUT_LEFT_BUTTON && state == GLUT_UP && hard.isOverlapping(x,y)){
             screenStatus = hardScreen;
             gerald.move(rand()%int(320),rand()%int(550)+30);
@@ -318,34 +322,38 @@ void mouse(int button, int state, int x, int y) {
         }
     }
     else if (screenStatus == easyScreen) {
-        //donkey is overlapping method instead
+        //if the user clicks on the donkey
         if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
             if (gerald.userOverlappingDonkey(x, y)){
+                //game is won!
                 gameWon = true;
             }
+                //didn't click on the donkey so...
                 numTries++;
                 dist = gerald.calculateDistance(x,y);
-
-
         }
     }
     else if (screenStatus == mediumScreen) {
-        //donkey is overlapping method instead
+        //if the user clicks on the donkey
         if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN && gerald.userOverlappingDonkey(x, y)) {
+            //game is won!
             gameWon = true;
         }
         if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
+            //didn't click on the donkey so...
             dist = gerald.calculateDistance(x,y);
             numTries++;
         }
 
     }
     else if (screenStatus == hardScreen) {
-        //donkey is overlapping method instead
+        //if the user click on the donkey
         if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN && gerald.userOverlappingDonkey(x, y)) {
+            //Game is won!
             gameWon = true;
         }
         if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
+            //didn't click on the donkey so...
             dist = gerald.calculateDistance(x,y);
             numTries++;
         }
@@ -356,7 +364,6 @@ void mouse(int button, int state, int x, int y) {
 }
 
 void timer(int dummy) {
-
     glutPostRedisplay();
     glutTimerFunc(30, timer, dummy);
 }
