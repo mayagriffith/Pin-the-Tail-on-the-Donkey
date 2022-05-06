@@ -12,7 +12,7 @@ using namespace std;
 GLdouble width, height;
 int wd;
 int numTries = 0;
-int maxTries;
+int maxTries = 8;
 bool gameWon = false;
 Button spawn({1, 0, 0}, {100, 100}, 100, 50, "Spawn");
 Button tutorial({.45,.97,.46},{160,400}, 250,150,"Tutorial");
@@ -101,6 +101,7 @@ void display() {
         for (const char &letter : label) {
             glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, letter);
         }
+        glColor3f(1, 1, 1);
         label = "                     ~ The harder the difficulty, the less tries you have to find the donkey ";
         glRasterPos2i(75,120);
         for (const char &letter : label) {
@@ -113,6 +114,7 @@ void display() {
         }
         label= "                                         ~ Press 'b' to return to the home screen ";
         glRasterPos2i(75,150);
+        glColor3f(1, 1, 1);
         for (const char &letter : label) {
             glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, letter);
         }
@@ -130,13 +132,14 @@ void display() {
 
     if (screenStatus == easyScreen){
         if (gameWon==false){
+            glColor3f(1, 1, 1);
             string label = "The donkey is hidden somewhere random on the screen, you have 8 tries to find it! \n";
             glRasterPos2i(100,30);
             glColor3f(1, 1, 1);
             for (const char &letter : label) {
                 glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, letter);
             }
-            string distanceScore = "Your distance is:";
+            string distanceScore = "Your distance is:" + to_string(dist);
             p = dist;
             int j = 0;
             int k = 0;
@@ -150,7 +153,7 @@ void display() {
             glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24,48+p);
 
             glRasterPos2f(200, 200);
-
+            glColor3f(1, 1, 1);
             gerald.draw();
             geraldTail.draw();
             hide.draw();
@@ -158,48 +161,37 @@ void display() {
 
         }
         else{
-            string label = "The donkey is hidden somewhere random on the screen, you have "+ to_string(maxTries - numTries)  + " more tries to find it!";
+            glColor3f(1, 1, 1);
+            string label = "You won in "+ to_string(numTries)  + " tries!";
             glRasterPos2i(25,50);
             glColor3f(1, 1, 1);
             for (const char &letter : label) {
                 glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, letter);
             }
-        }
-        if (gameWon==false) {
-            gerald.draw();
-            geraldTail.draw();
-//            hide.draw();
-            hide.move(300,425);
-        }
-        else {
             gerald.drawFullDonkey();
-            hide.move(10000,10000);
         }
+
         glFlush();
     }
 
     if (screenStatus == mediumScreen){
-        if (numTries == 0){
-            string label = "The donkey is hidden somewhere random on the screen, you have 5 tries to find it!";
+        if (gameWon==false){
+            string label = "The donkey is hidden somewhere random on the screen, you have 8 tries to find it! \n";
             glRasterPos2i(100,50);
             glColor3f(1, 1, 1);
             for (const char &letter : label) {
                 glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, letter);
             }
+            gerald.draw();
+            geraldTail.draw();
         }
         else{
-            string label = "The donkey is hidden somewhere random on the screen, you have "+ to_string(maxTries - numTries)  + " more tries to find it!";
+            string label = "You won in "+ to_string(numTries)  + " tries!";
             glRasterPos2i(95,50);
             glColor3f(1, 1, 1);
             for (const char &letter : label) {
                 glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, letter);
             }
-        }
-        if (gameWon==false) {
-            gerald.draw();
-            geraldTail.draw();
-        }
-        else {
             gerald.drawFullDonkey();
         }
         glFlush();
@@ -306,15 +298,17 @@ void mouse(int button, int state, int x, int y) {
         if(button==GLUT_LEFT_BUTTON && state == GLUT_UP && medium.isOverlapping(x,y)){
             screenStatus = mediumScreen;
             gerald.move(rand()%int(320),rand()%int(550)+30);
+            maxTries = 5;
         }
         if(button==GLUT_LEFT_BUTTON && state == GLUT_UP && hard.isOverlapping(x,y)){
             screenStatus = hardScreen;
             gerald.move(rand()%int(320),rand()%int(550)+30);
+            maxTries = 3;
         }
     }
     if (screenStatus == tutorialScreen){
         //donkey is overlapping method instead
-        if(button==GLUT_LEFT_BUTTON && state == GLUT_DOWN && gerald.userOverlappingDonkey(x,y)){
+        if(button==GLUT_LEFT_BUTTON && state == GLUT_DOWN && test.isOverlapping(x,y)){
             gameWon= true;
         }
     }

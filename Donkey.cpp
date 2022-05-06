@@ -49,7 +49,7 @@ bool Donkey::userOverlappingDonkey(int x, int y) const{
     cout <<"User X: " <<x << endl;
     cout <<"User Y: " << y << endl;
     int b = 500/sideLength;
-    if(this->getX()+b<x && this->getX()+b+50*sideLength>x && this->getY()<y && this->getY()+50*sideLength>y){
+    if(this->getX()<x && this->getX()+50*sideLength>x && this->getY()<y && this->getY()+40*sideLength>y){
         overlapping=true;
     }
     return overlapping;
@@ -82,7 +82,6 @@ void Donkey::draw() const {
             case 't': glColor3f(.5, .5, .5); break;//grey
             case 'l': glColor3f(.3, .3, .3); break;//darker gray
             case ' ': glColor4f(0.43, 0.32, 0.19,0); break;//dark brown background color
-
             default: // newline
                 draw = false;
                 xCoord = x;
