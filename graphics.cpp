@@ -142,7 +142,7 @@ void display() {
                 glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, letter);
             }
            // hide.draw();
-            gerald.draw();
+            //gerald.draw();
             geraldTail.draw();
             //hide.move(300,425);
         }
