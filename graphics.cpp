@@ -159,7 +159,7 @@ void display() {
         }
         else{
             string label = "The donkey is hidden somewhere random on the screen, you have "+ to_string(maxTries - numTries)  + " more tries to find it!";
-            glRasterPos2i(25,50);
+            glRasterPos2i(100,30);
             glColor3f(1, 1, 1);
             for (const char &letter : label) {
                 glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, letter);
@@ -216,7 +216,7 @@ void display() {
         }
         else{
             string label = "The donkey is hidden somewhere random on the screen, you have "+ to_string(maxTries - numTries)  + " more tries to find it!";
-            glRasterPos2i(95,50);
+            glRasterPos2i(100,50);
             glColor3f(1, 1, 1);
             for (const char &letter : label) {
                 glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, letter);
