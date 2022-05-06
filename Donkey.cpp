@@ -38,7 +38,7 @@ void Donkey::resize(unsigned int width, unsigned int height) {
 }
 
 int Donkey::calculateDistance(int x, int y) {
-return sqrt(pow(this->getX() - x, 2) + pow(this->getY() - y, 2) * 1.0);
+    return sqrt(pow(this->getX() - x, 2) + pow(this->getY() - y, 2) * 1.0);
 }
 
 
