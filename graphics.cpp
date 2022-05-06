@@ -163,7 +163,6 @@ void display() {
         }
         else{
             glColor3f(1, 1, 1);
-            string label = "You won in "+ to_string(numTries)  + " tries!";
             glRasterPos2i(25,50);
             string label = "You found the donkey! It took you "+ to_string(numTries)  + " tries to find it!";
             glRasterPos2i(150,30);
@@ -329,7 +328,7 @@ void mouse(int button, int state, int x, int y) {
     }
     if (screenStatus == tutorialScreen){
         //donkey is overlapping method instead
-        if(button==GLUT_LEFT_BUTTON && state == GLUT_DOWN && test.isOverlapping(x,y)){
+        if(button==GLUT_LEFT_BUTTON && state == GLUT_DOWN && gerald.userOverlappingDonkey(x,y)){
             gameWon= true;
         }
     }
