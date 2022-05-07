@@ -7,36 +7,43 @@
 #include <vector>
 using namespace std;
 
+//default constructor
 Donkey::Donkey() {
     int sideLength = 8;
     int x = 100;
     int y = 100;
 }
 
+//argument constructor
 Donkey::Donkey(int sideLength, int x, int y) {
     this->sideLength = sideLength;
     this->x = x;
     this->y = y;
 }
 
+//getter for X
 int Donkey::getX() const {
     return x;
 }
 
+//getter for Y
 int Donkey::getY() const {
     return y;
 }
 
+//moves the donkey to specified coordinates
 void Donkey::move(int deltaX, int deltaY) {
     x = deltaX;
     y = deltaY;
 }
 
+//give new width and height to donkey
 void Donkey::resize(unsigned int width, unsigned int height) {
     x = width;
     y = height;
 }
 
+//calculates the distance of the x y coordinates to the donkey.
 int Donkey::calculateDistance(int x, int y) {
     return sqrt(pow(this->getX() - x, 2) + pow(this->getY() - y, 2) * 1.0);
 }
@@ -55,10 +62,6 @@ bool Donkey::userOverlappingDonkey(int x, int y) const{
     return overlapping;
 
 }
-
-//void Donkey::hide() {
-//
-//}
 
 
 void Donkey::draw() const {
