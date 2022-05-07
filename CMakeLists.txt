@@ -27,6 +27,7 @@ file(GLOB SOURCE_FILES
         )
 
 add_executable(main.cpp ${SOURCE_FILES})
+add_executable(testing.cpp Donkey.cpp Tail.cpp graphics.cpp Quad.cpp)
 
 if (WIN32)
     target_link_libraries (main.cpp ${OPENGL_LIBRARIES} freeglut)
