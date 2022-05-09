@@ -9,26 +9,31 @@
 #include <string>
 using namespace std;
 
+//global variables
 GLdouble width, height;
 int wd;
+//variables for tries and boolean for winning game
 int numTries = 0;
 int maxTries = 10;
 bool gameWon = false;
-Button spawn({1, 0, 0}, {100, 100}, 100, 50, "Spawn");
+//button declaration
 Button tutorial({.45,.97,.46},{160,400}, 250,150,"Tutorial");
 Button easy({.23,.54,.24},{415,400}, 250,150,"Easy");
 Button medium({.141,.35,.149},{160,555}, 250,150,"Medium");
 Button hard({.023,.19,.029},{415,555}, 250,150,"Hard");
 Quad hide({0.43, 0.32, .19},{300,450},600,775);
+//enum for displaying different screens
 enum screen {open, tutorialScreen,easyScreen, mediumScreen, hardScreen};
 screen screenStatus = open;
+//Declaring Donkeys and Tails, one for the games and one for the tutorial
 Donkey geraldTut(6, 180, 250);
 Donkey gerald(6, 100, 100);
 Tail geraldTail(6,425,333);
 Tail geraldTutTail(6, 425, 333);
-
+//global distance variable for displaying user's distance from the donkey
 int dist = 0;
 
+//Half screen sized window to play game
 void init() {
     width = 600;
     height = 800;
@@ -38,21 +43,9 @@ void init() {
 /* Initialize OpenGL Graphics */
 void initGL() {
     // Set "clearing" or background color
-    glClearColor(0.43f, 0.32f, 0.19f, 1.0f); // Green and opaque
+    glClearColor(0.43f, 0.32f, 0.19f, 1.0f); // Dark brown background color
 }
 
-void initUser() {
-    //user is the tail
-    //create tail
-    //switch screens for each level?
-    //user.setSize(20.0,20.0);
-    //
-    //user.setColor(white);
-
-    // centered in the top left corner of the graphics window
-    //user.setCenter(0,0);
-
-}
 
 /* Handler for window-repaint event. Call back when the window first appears and
  whenever the window needs to be re-painted. */
@@ -76,23 +69,32 @@ void display() {
      * Draw here
      */
 
-
+    //Display for opening screen with 4 button options to play
     if (screenStatus == open){
+        //draw all four buttons
         tutorial.draw();
         easy.draw();
         medium.draw();
         hard.draw();
+        //display opening text
         string label = "Welcome to pin the tail on the Donkey!";
-        glRasterPos2i(175,175);
+        glRasterPos2i(195,175);
         glColor3f(1, 1, 1);
         for (const char &letter : label) {
             glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, letter);
         }
-
+        //display text to quit program
+        string label2 = "Press the esc key to quit";
+        glRasterPos2i(225,790);
+        for (const char &letter : label2) {
+            glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, letter);
+        }
         glFlush();
     }
 
+    //Display for tutorial screen that allows the user to see where they can place the tail on the donkey
     if (screenStatus == tutorialScreen){
+        //display text of the instructions to pin the tail
         glColor3f(1, 1, 1);
         string label = "~ Your goal is to place the tail on the donkey that is randomly hidden on the screen somewhere";
         glRasterPos2i(75,105);
@@ -116,6 +118,7 @@ void display() {
         for (const char &letter : label) {
             glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, letter);
         }
+        //if the user clicks on the right spot and the game is won then draw full donkey, if not draw the donkey without a tail and the tail
         if (gameWon==false) {
             geraldTut.draw();
             geraldTutTail.draw();
@@ -123,11 +126,12 @@ void display() {
         else {
             geraldTut.drawFullDonkey();
         }
-
         glFlush();
     }
 
+    //Display for the screen of the easy mode of the game
     if (screenStatus == easyScreen){
+        //if the user has not clicked on the donkey display instructions and draw the tail
         if (gameWon==false){
             string label = "The donkey is hidden somewhere random on the screen, click and and find it. You have unlimited tries!";
             glColor3f(1, 1, 1);
@@ -140,11 +144,10 @@ void display() {
             for (const char &letter : distanceScore) {
                 glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, letter);
             }
-           // hide.draw();
-            //gerald.draw();
             geraldTail.draw();
-            //hide.move(300,425);
         }
+        //if the user has won the game display the winning text along with how many tries it took the user to find the donkey
+        //as well as displaying the full donkey with it's tail
         else{
             glColor3f(1, 1, 1);
             glRasterPos2i(100,50);
@@ -166,7 +169,9 @@ void display() {
         glFlush();
     }
 
+    //Display for the screen of the medium mode of the game
     if (screenStatus == mediumScreen){
+        //if the user has not clicked on the donkey display instructions and draw the tail
         if (gameWon==false){
             string label = "The donkey is hidden somewhere random on the screen, you have "+ to_string(maxTries - numTries)  + " more tries to find it! ";
             glColor3f(1, 1, 1);
@@ -179,15 +184,14 @@ void display() {
             for (const char &letter : distanceScore) {
                 glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, letter);
             }
-           // hide.draw();
-            //gerald.draw();
             geraldTail.draw();
-            //hide.move(300,425);
+            //if the user reaches the max amount of tries set the gameWin bool to true in order to display the whole donkey
             if (numTries==maxTries){
                 gameWon = true;
             }
         }
         else{
+            //if the user has 'won' because the ran out of tries display losing message and draw the full donkey
             if (numTries==maxTries){
                 string lostMessage = "You ran out of tries, here's the donkey! Press 'b' to return to the home screen";
                 glRasterPos2i(120,45);
@@ -197,6 +201,7 @@ void display() {
                 gerald.drawFullDonkey();
                 hide.move(10000,10000);
             }
+            // the user has won, displaying ending message with user's tries and display the full donkey
             else{
                 glColor3f(1, 1, 1);
                 glRasterPos2i(25,50);
@@ -219,7 +224,9 @@ void display() {
         glFlush();
     }
 
+    //Display for the screen of the hard mode of the game
     if (screenStatus == hardScreen){
+        //if the user has not clicked on the donkey display instructions and draw the tail
         if (gameWon==false){
             string label = "The donkey is hidden somewhere random on the screen, you have "+ to_string(maxTries - numTries)  + " more tries to find it! ";
             glColor3f(1, 1, 1);
@@ -232,15 +239,14 @@ void display() {
             for (const char &letter : distanceScore) {
                 glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, letter);
             }
-           // hide.draw();
-            //gerald.draw();
             geraldTail.draw();
-            //hide.move(300,425);
+            //if the user reaches the max amount of tries set the gameWin bool to true in order to display the whole donkey
             if (numTries==maxTries){
                 gameWon = true;
             }
         }
         else{
+            //if the user has 'won' because the ran out of tries display losing message and draw the full donkey
             if(numTries==maxTries){
                 string lostMessage = "You ran out of tries, here's the donkey! Press 'b' to return to the home screen";
                 glRasterPos2i(120,45);
@@ -250,6 +256,7 @@ void display() {
                 gerald.drawFullDonkey();
                 hide.move(10000,10000);
             }
+            // the user has won, displaying ending message with user's tries and display the full donkey
             else{
                 glColor3f(1, 1, 1);
                 glRasterPos2i(25,50);
@@ -271,7 +278,6 @@ void display() {
         }
         glFlush();
     }
-
     glFlush();  // Render now
 }
 
@@ -284,12 +290,12 @@ void kbd(unsigned char key, int x, int y) {
     }
     //if you want to go back to the open screen
     if (key == 'b'){
+        //reset game status, numtries, and distance if the user goes back to the open screen
         screenStatus = open;
         gameWon = false;
         numTries = 0;
         dist = 0;
     }
-
     glutPostRedisplay();
 }
 
@@ -304,33 +310,23 @@ void kbdS(int key, int x, int y) {
         case GLUT_KEY_UP:
             break;
     }
-
     glutPostRedisplay();
 }
 
 void cursor(int x, int y) {
-    //If the Button is overlapping with the (x, y) coordinate passed in, call the hover method. Otherwise, call the release method.
-    if ((spawn.getLeftX()<x&&spawn.getRightX()>x)&&(spawn.getTopY()<y&&spawn.getBottomY()>y)){
-        spawn.hover();
-    }
-    else{
-        spawn.release();
-    }
-
+    //no matter the screen set the tail to move with the user's mouse position
     if (screenStatus == tutorialScreen){
         geraldTutTail.move(x,y);
     }
     if (screenStatus == easyScreen){
         geraldTail.move(x,y);
     }
-
     if (screenStatus == mediumScreen){
         geraldTail.move(x,y);
     }
     if (screenStatus == hardScreen){
         geraldTail.move(x,y);
     }
-
     glutPostRedisplay();
 }
 
@@ -349,12 +345,14 @@ void mouse(int button, int state, int x, int y) {
             gerald.move(rand()%int(320),rand()%int(550)+30);
         }
         //if click on medium screen button, go to medium. Move gerald somewhere random on the screen.
+        //max tries is 5 for medium game
         if(button==GLUT_LEFT_BUTTON && state == GLUT_UP && medium.isOverlapping(x,y)){
             screenStatus = mediumScreen;
             gerald.move(rand()%int(320),rand()%int(550)+30);
             maxTries = 5;
         }
         //if click on hard screen button, go to hard. Move gerald somewhere random on the screen.
+        //max tries is 3 for hard game
         if(button==GLUT_LEFT_BUTTON && state == GLUT_UP && hard.isOverlapping(x,y)){
             screenStatus = hardScreen;
             gerald.move(rand()%int(320),rand()%int(550)+30);
@@ -405,9 +403,7 @@ void mouse(int button, int state, int x, int y) {
             dist = gerald.calculateDistance(x,y);
             numTries++;
         }
-
     }
-
     glutPostRedisplay();
 }
 
