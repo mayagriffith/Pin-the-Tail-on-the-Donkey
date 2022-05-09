@@ -8,7 +8,7 @@ bool testDonkey();
 bool testTail();
 
 //main program to call test functions and print results
-int main() {
+int main2() {
     if (testDonkey() == true) {
         cout << "Passed all Donkey test cases" << endl;
     }
@@ -63,3 +63,4 @@ bool testTail() {
     }
     return passed;
 }
+
